@@ -8,5 +8,5 @@
   background-color: var(--btn-color);
 }
 .btn:hover {
-  background-color: var(--main-hoverText-color);
+  background-color: var(--btn-hover-color);
 }
