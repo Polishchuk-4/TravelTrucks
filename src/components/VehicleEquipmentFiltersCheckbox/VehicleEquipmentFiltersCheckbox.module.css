@@ -1,0 +1,45 @@
+.vehicleEquipment {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  margin-bottom: 24px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--main-text-color);
+}
+.checkboxesContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.label {
+  width: 112px;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 8px;
+  border: 1px solid var(--main-text-color);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.label:hover {
+  background-color: var(--gray-color);
+}
+.input {
+  appearance: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  visibility: hidden;
+}
+.label:has(.input:checked) {
+  background-color: var(--gray-color);
+  border-color: var(--btn-hover-color);
+}
