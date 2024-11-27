@@ -1,7 +1,6 @@
 body {
-  --main-bg-color: #2d2013;
-  /* --extra-bg-color: #e4e5e6; */
-
-  --main-text-color: #d57d1f;
-  --main-hoverText-color: #ffaf58;
+  --main-text-color: #101828;
+  --white-color: #fff;
+  --btn-color: #e44848;
+  --btn-hover-color: #d84343;
 }

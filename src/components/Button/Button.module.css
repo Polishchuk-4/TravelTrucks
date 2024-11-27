@@ -1,0 +1,12 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 166px;
+  height: 56px;
+  border-radius: 200px;
+  background-color: var(--btn-color);
+}
+.btn:hover {
+  background-color: var(--main-hoverText-color);
+}
