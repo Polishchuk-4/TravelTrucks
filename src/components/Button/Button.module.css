@@ -6,7 +6,9 @@
   height: 56px;
   border-radius: 200px;
   background-color: var(--btn-color);
+  cursor: pointer;
+  color: var(--white-color);
 }
 .btn:hover {
-  background-color: var(--main-hoverText-color);
+  background-color: var(--btn-hover-color);
 }

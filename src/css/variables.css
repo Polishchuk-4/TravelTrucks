@@ -1,6 +1,8 @@
 body {
   --main-text-color: #101828;
   --white-color: #fff;
+  --gray-color: #f2f4f7;
   --btn-color: #e44848;
   --btn-hover-color: #d84343;
+  --header-bg-color: #f7f7f7;
 }

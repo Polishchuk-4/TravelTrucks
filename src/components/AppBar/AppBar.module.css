@@ -2,7 +2,7 @@
 
 .header {
   position: relative;
-  background-color: var(--white-color);
+  background-color: var(--header-bg-color);
   padding: 24px 0px;
   display: flex;
   justify-content: start;
