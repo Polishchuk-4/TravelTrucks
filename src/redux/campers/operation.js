@@ -31,7 +31,24 @@ export const fetchCampers = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      if (error.response) {
+        if (error.response.status === 404) {
+          return thunkAPI.rejectWithValue(
+            "No results found for the given filters."
+          );
+        }
+        return thunkAPI.rejectWithValue(
+          "Server error. Please try again later."
+        );
+      } else if (error.request) {
+        return thunkAPI.rejectWithValue(
+          "Network error. Please check your connection."
+        );
+      } else {
+        return thunkAPI.rejectWithValue(
+          "An unexpected error occurred: " + error.message
+        );
+      }
     }
   }
 );

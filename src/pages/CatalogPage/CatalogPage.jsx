@@ -29,7 +29,7 @@ export default function CatalogPage() {
   const currentPage = useSelector(selectCurrentPage);
   const isLoading = useSelector(selectIsLoading);
   const totalItems = useSelector(selectTotalItems);
-  const isError = useSelector(selectError);
+  const error = useSelector(selectError);
 
   const trucks = useSelector(selectCampers);
 
@@ -49,9 +49,9 @@ export default function CatalogPage() {
       <FiltersSideBar />
       <div className={style.column}>
         {trucks && <TruckList trucks={trucks} />}
-        {isError && <p>Please, choose else filters</p>}
+        {error && <p>{error}</p>}
         {isLoading && <Loader />}
-        {totalItems > trucks.length && !isLoading && !isError && (
+        {totalItems > trucks.length && !isLoading && !error && (
           <LoadMoreBtn onClick={handleLoadMore} />
         )}
       </div>

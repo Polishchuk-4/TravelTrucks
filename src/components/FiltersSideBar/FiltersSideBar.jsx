@@ -6,6 +6,8 @@ import VehicleEquipmentFiltersCheckbox from "../VehicleEquipmentFiltersCheckbox/
 import VehicleTypeFiltersRadio from "../VehicleTypeFiltersOption/VehicleTypeFiltersRadio";
 import Button from "../Button/Button";
 
+import { filtersInitialState } from "../../redux/filters/slice";
+
 import { selectAllFilters } from "../../redux/filters/selectors";
 
 import {
@@ -17,10 +19,11 @@ import {
 
 import { fetchCampers } from "../../redux/campers/operation";
 import { setCurrentPage } from "../../redux/campers/slice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function FiltersSideBar() {
-  const [isRequestMade, setIsRequestMade] = useState(false);
+  const [prevFilters, setPrevFilters] = useState(filtersInitialState);
+  const [isSearchMade, setIsSearchMade] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -57,23 +60,38 @@ export default function FiltersSideBar() {
   };
 
   const searchFilteredItem = () => {
-    if (isFiltersActive) {
+    if (JSON.stringify(filters) === JSON.stringify(prevFilters)) {
+      console.log("Фільтри не змінилися, запит не виконано.");
+      return;
+    } else {
+      console.log("search");
       dispatch(setCurrentPage(1));
       dispatch(fetchCampers({ page: 1, filters }));
-      setIsRequestMade(true);
-    } else {
-      return;
+      setPrevFilters(filters);
+      setIsSearchMade(true);
     }
   };
 
   const handleResetFilters = () => {
-    dispatch(resetFilters());
-    if (isRequestMade) {
+    if (isSearchMade) {
+      console.log("Фільтри очищено з виконанням запиту початкових даних.");
+      dispatch(resetFilters());
       dispatch(setCurrentPage(1));
       dispatch(fetchCampers({ page: 1 }));
-      setIsRequestMade(false);
+      setPrevFilters(filtersInitialState);
+      setIsSearchMade(false);
+    } else {
+      console.log("Фільтри очищено без виконання запиту.");
+      dispatch(resetFilters());
     }
   };
+
+  useEffect(() => {
+    return () => {
+      console.log("effe");
+      dispatch(resetFilters());
+    };
+  }, [dispatch]);
 
   return (
     <aside className={style.aside}>
