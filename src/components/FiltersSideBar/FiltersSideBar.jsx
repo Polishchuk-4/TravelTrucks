@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import style from "./FiltersSideBar.module.css";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import LocationFilterInput from "../LocationFilterInput/LocationFilterInput";
 import VehicleEquipmentFiltersCheckbox from "../VehicleEquipmentFiltersCheckbox/VehicleEquipmentFiltersCheckbox";
 import VehicleTypeFiltersRadio from "../VehicleTypeFiltersOption/VehicleTypeFiltersRadio";
@@ -61,10 +63,12 @@ export default function FiltersSideBar() {
 
   const searchFilteredItem = () => {
     if (JSON.stringify(filters) === JSON.stringify(prevFilters)) {
-      console.log("Фільтри не змінилися, запит не виконано.");
+      toast("Please, choose else filter.", {
+        icon: "ℹ️",
+        duration: 1000,
+      });
       return;
     } else {
-      console.log("search");
       dispatch(setCurrentPage(1));
       dispatch(fetchCampers({ page: 1, filters }));
       setPrevFilters(filters);
@@ -74,14 +78,12 @@ export default function FiltersSideBar() {
 
   const handleResetFilters = () => {
     if (isSearchMade) {
-      console.log("Фільтри очищено з виконанням запиту початкових даних.");
       dispatch(resetFilters());
       dispatch(setCurrentPage(1));
       dispatch(fetchCampers({ page: 1 }));
       setPrevFilters(filtersInitialState);
       setIsSearchMade(false);
     } else {
-      console.log("Фільтри очищено без виконання запиту.");
       dispatch(resetFilters());
     }
   };
@@ -113,6 +115,7 @@ export default function FiltersSideBar() {
           <Button text="Reset" type="button" onclick={handleResetFilters} />
         )}
       </div>
+      <Toaster />
     </aside>
   );
 }
