@@ -4,7 +4,9 @@ import Layout from "./Layout";
 import { lazy } from "react";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
-const CatalogPage = lazy(() => import("../pages/CatalogPage/CatalogPage"));
+// const CatalogPage = lazy(() => import("../pages/CatalogPage/CatalogPage"));
+
+import CatalogPage from "../pages/CatalogPage/CatalogPage";
 
 export default function App() {
   return (
