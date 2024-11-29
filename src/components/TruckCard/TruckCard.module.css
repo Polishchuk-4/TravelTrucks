@@ -1,0 +1,67 @@
+.card {
+  display: flex;
+  column-gap: 24px;
+  padding: 24px;
+  color: var(--main-text-color);
+  border-radius: 20px;
+  border: 1px solid var(--gray-light-color);
+}
+.img {
+  width: 292px;
+  height: 320px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.titleRow {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  position: relative;
+  margin-right: auto;
+}
+.price {
+  display: flex;
+  align-items: center;
+}
+.favoriteBtn {
+}
+.nameWithPrice {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+}
+.ratingWithLocationRow {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 4px;
+  margin-top: 8px;
+}
+.rating,
+.location {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+.location {
+  margin-left: 16px;
+}
+.description {
+  width: 525px;
+  color: var(--gray-text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

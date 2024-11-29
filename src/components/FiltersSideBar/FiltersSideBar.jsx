@@ -1,63 +1,100 @@
 import { useDispatch, useSelector } from "react-redux";
-import LocationFilterInput from "../LocationFilterInput/LocationFilterInput";
 import style from "./FiltersSideBar.module.css";
-import {
-  selectFiltersLocation,
-  selectFiltersVehicleEquipment,
-  selectFiltersVehicleType,
-} from "../../redux/filters/selectors";
+
+import LocationFilterInput from "../LocationFilterInput/LocationFilterInput";
+import VehicleEquipmentFiltersCheckbox from "../VehicleEquipmentFiltersCheckbox/VehicleEquipmentFiltersCheckbox";
+import VehicleTypeFiltersRadio from "../VehicleTypeFiltersOption/VehicleTypeFiltersRadio";
+import Button from "../Button/Button";
+
+import { selectAllFilters } from "../../redux/filters/selectors";
+
 import {
   setLocation,
   setVehicleEquipment,
-  setVehicleType,
+  setForm,
+  resetFilters,
 } from "../../redux/filters/slice";
-import VehicleEquipmentFiltersCheckbox from "../VehicleEquipmentFiltersCheckbox/VehicleEquipmentFiltersCheckbox";
-import VehicleTypeFiltersOption from "../VehicleTypeFiltersOption/VehicleTypeFiltersRadio";
-import Button from "../Button/Button";
+
+import { fetchCampers } from "../../redux/campers/operation";
+import { setCurrentPage } from "../../redux/campers/slice";
+import { useState } from "react";
 
 export default function FiltersSideBar() {
+  const [isRequestMade, setIsRequestMade] = useState(false);
+
   const dispatch = useDispatch();
 
-  const filtersLocation = useSelector(selectFiltersLocation);
-  const filtersVehicleEquipment = useSelector(selectFiltersVehicleEquipment);
-  const filtersVehicleType = useSelector(selectFiltersVehicleType);
+  const filters = useSelector(selectAllFilters);
 
-  console.log(filtersVehicleEquipment);
+  const isFiltersActive =
+    filters.location ||
+    filters.form ||
+    Object.values(filters.vehicleEquipment).some((value) => value);
 
   const handleChangeLocation = (e) => {
-    console.log(e.target.value);
     dispatch(setLocation(e.target.value));
   };
 
   const handleChangeVehicleEquipment = (e) => {
-    console.log(e.target.name);
     const { name, checked } = e.target;
-    dispatch(
-      setVehicleEquipment({ ...filtersVehicleEquipment, [name]: checked })
-    );
+
+    if (name === "transmission") {
+      dispatch(
+        setVehicleEquipment({
+          ...filters.vehicleEquipment,
+          [name]: checked ? "automatic" : "",
+        })
+      );
+    } else {
+      dispatch(
+        setVehicleEquipment({ ...filters.vehicleEquipment, [name]: checked })
+      );
+    }
   };
 
   const handleChangeVehicleType = (e) => {
-    dispatch(setVehicleType(e.target.value));
+    dispatch(setForm(e.target.value));
   };
 
-  const handleFilteredItem = () => {};
+  const searchFilteredItem = () => {
+    if (isFiltersActive) {
+      dispatch(setCurrentPage(1));
+      dispatch(fetchCampers({ page: 1, filters }));
+      setIsRequestMade(true);
+    } else {
+      return;
+    }
+  };
+
+  const handleResetFilters = () => {
+    dispatch(resetFilters());
+    if (isRequestMade) {
+      dispatch(setCurrentPage(1));
+      dispatch(fetchCampers({ page: 1 }));
+      setIsRequestMade(false);
+    }
+  };
 
   return (
     <aside className={style.aside}>
       <LocationFilterInput
-        value={filtersLocation}
+        value={filters.location}
         onChange={handleChangeLocation}
       />
       <VehicleEquipmentFiltersCheckbox
-        valueVehicleEquipment={filtersVehicleEquipment}
+        valueVehicleEquipment={filters.vehicleEquipment}
         onChange={handleChangeVehicleEquipment}
       />
-      <VehicleTypeFiltersOption
-        value={filtersVehicleType}
+      <VehicleTypeFiltersRadio
+        value={filters.form}
         onChange={handleChangeVehicleType}
       />
-      <Button text="Search" type="button" onclick={handleFilteredItem} />
+      <div className={style.rowBtn}>
+        <Button text="Search" type="button" onclick={searchFilteredItem} />
+        {isFiltersActive && (
+          <Button text="Reset" type="button" onclick={handleResetFilters} />
+        )}
+      </div>
     </aside>
   );
 }

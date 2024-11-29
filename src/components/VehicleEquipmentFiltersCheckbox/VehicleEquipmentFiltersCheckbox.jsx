@@ -30,14 +30,14 @@ export default function VehicleEquipmentFiltersCheckbox({
         <label
           className={clsx(
             style.label,
-            valueVehicleEquipment.AC && style.checked
+            valueVehicleEquipment.transmission && style.checked
           )}
         >
           <input
             type="checkbox"
-            name="automatic"
+            name="transmission"
             onChange={onChange}
-            checked={valueVehicleEquipment.automatic}
+            checked={valueVehicleEquipment.transmission === "automatic"}
             className={style.input}
           />
           <Icon icon="diagram" />
@@ -47,14 +47,14 @@ export default function VehicleEquipmentFiltersCheckbox({
         <label
           className={clsx(
             style.label,
-            valueVehicleEquipment.AC && style.checked
+            valueVehicleEquipment.kitchen && style.checked
           )}
         >
           <input
             type="checkbox"
             name="kitchen"
             onChange={onChange}
-            checked={valueVehicleEquipment.Kitchen}
+            checked={valueVehicleEquipment.kitchen}
             className={style.input}
           />
           <Icon icon="kitchen" />
@@ -64,7 +64,7 @@ export default function VehicleEquipmentFiltersCheckbox({
         <label
           className={clsx(
             style.label,
-            valueVehicleEquipment.AC && style.checked
+            valueVehicleEquipment.TV && style.checked
           )}
         >
           <input
@@ -81,7 +81,7 @@ export default function VehicleEquipmentFiltersCheckbox({
         <label
           className={clsx(
             style.label,
-            valueVehicleEquipment.AC && style.checked
+            valueVehicleEquipment.bathroom && style.checked
           )}
         >
           <input
