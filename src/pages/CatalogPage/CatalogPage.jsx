@@ -1,10 +1,15 @@
 import { useEffect } from "react";
-import FiltersSideBar from "../../components/FiltersSideBar/FiltersSideBar";
-import style from "./CatalogPage.module.css";
-import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCampers } from "../../redux/campers/operation";
+
+import style from "./CatalogPage.module.css";
+import clsx from "clsx";
+
+import FiltersSideBar from "../../components/FiltersSideBar/FiltersSideBar";
 import TruckList from "../../components/TruckList/TruckList";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
+import Loader from "../../components/Loader/Loader";
+
 import {
   selectCampers,
   selectCurrentPage,
@@ -13,8 +18,6 @@ import {
   selectTotalItems,
 } from "../../redux/campers/selectors";
 
-import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
-import Loader from "../../components/Loader/Loader";
 import { setCurrentPage } from "../../redux/campers/slice";
 import { selectAllFilters } from "../../redux/filters/selectors";
 

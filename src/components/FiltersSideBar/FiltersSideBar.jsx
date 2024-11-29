@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import LocationFilterInput from "../LocationFilterInput/LocationFilterInput";
 import style from "./FiltersSideBar.module.css";
+
+import LocationFilterInput from "../LocationFilterInput/LocationFilterInput";
+import VehicleEquipmentFiltersCheckbox from "../VehicleEquipmentFiltersCheckbox/VehicleEquipmentFiltersCheckbox";
+import VehicleTypeFiltersRadio from "../VehicleTypeFiltersOption/VehicleTypeFiltersRadio";
+import Button from "../Button/Button";
+
 import { selectAllFilters } from "../../redux/filters/selectors";
 
 import {
@@ -10,9 +15,6 @@ import {
   resetFilters,
 } from "../../redux/filters/slice";
 
-import VehicleEquipmentFiltersCheckbox from "../VehicleEquipmentFiltersCheckbox/VehicleEquipmentFiltersCheckbox";
-import VehicleTypeFiltersRadio from "../VehicleTypeFiltersOption/VehicleTypeFiltersRadio";
-import Button from "../Button/Button";
 import { fetchCampers } from "../../redux/campers/operation";
 import { setCurrentPage } from "../../redux/campers/slice";
 import { useState } from "react";
