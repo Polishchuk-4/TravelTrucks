@@ -23,6 +23,7 @@
   padding-left: 48px;
   border-radius: 12px;
   background-color: var(--header-bg-color);
+  text-transform: capitalize;
 }
 .input::placeholder {
   color: var(--main-color);

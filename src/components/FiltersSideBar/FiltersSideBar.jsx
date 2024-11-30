@@ -90,7 +90,6 @@ export default function FiltersSideBar() {
 
   useEffect(() => {
     return () => {
-      console.log("effe");
       dispatch(resetFilters());
     };
   }, [dispatch]);
@@ -110,9 +109,19 @@ export default function FiltersSideBar() {
         onChange={handleChangeVehicleType}
       />
       <div className={style.rowBtn}>
-        <Button text="Search" type="button" onclick={searchFilteredItem} />
+        <Button
+          text="Search"
+          type="button"
+          onClick={searchFilteredItem}
+          view="simple"
+        />
         {isFiltersActive && (
-          <Button text="Reset" type="button" onclick={handleResetFilters} />
+          <Button
+            text="Reset"
+            type="button"
+            onClick={handleResetFilters}
+            view="simple"
+          />
         )}
       </div>
       <Toaster />

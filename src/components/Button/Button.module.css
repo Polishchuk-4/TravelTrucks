@@ -5,10 +5,19 @@
   width: 166px;
   height: 56px;
   border-radius: 200px;
-  background-color: var(--btn-color);
   cursor: pointer;
+}
+.simple {
+  background-color: var(--btn-color);
   color: var(--white-color);
 }
-.btn:hover {
+.simple:hover {
   background-color: var(--btn-hover-color);
+}
+.transparent {
+  color: var(--main-text-color);
+  border: 1px solid var(--gray-light-color);
+}
+.transparent:hover {
+  border-color: var(--btn-hover-color);
 }
