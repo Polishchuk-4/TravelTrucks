@@ -19,7 +19,12 @@ export default function HomePage() {
       <h2 className={style["title-2"]}>
         You can find everything you want in our catalog
       </h2>
-      <Button text="View Now" type="button" onclick={handleNavigate} />
+      <Button
+        text="View Now"
+        type="button"
+        onClick={handleNavigate}
+        view="simple"
+      />
     </main>
   );
 }

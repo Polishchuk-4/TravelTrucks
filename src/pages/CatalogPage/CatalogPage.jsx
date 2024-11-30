@@ -7,7 +7,6 @@ import clsx from "clsx";
 
 import FiltersSideBar from "../../components/FiltersSideBar/FiltersSideBar";
 import TruckList from "../../components/TruckList/TruckList";
-import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
 import Loader from "../../components/Loader/Loader";
 
 import {
@@ -20,6 +19,7 @@ import {
 
 import { setCurrentPage } from "../../redux/campers/slice";
 import { selectAllFilters } from "../../redux/filters/selectors";
+import Button from "../../components/Button/Button";
 
 const clsxMain = clsx("container", style.main);
 
@@ -52,7 +52,12 @@ export default function CatalogPage() {
         {error && <p>{error}</p>}
         {isLoading && <Loader />}
         {totalItems > trucks.length && !isLoading && !error && (
-          <LoadMoreBtn onClick={handleLoadMore} />
+          <Button
+            text="Load more"
+            type="button"
+            onClick={handleLoadMore}
+            view="transparent"
+          />
         )}
       </div>
     </main>

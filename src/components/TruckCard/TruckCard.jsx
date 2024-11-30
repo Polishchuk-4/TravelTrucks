@@ -43,7 +43,12 @@ export default function TruckCard({ truck }) {
           AC={truck.AC}
           TV={truck.TV}
         />
-        <Button type="button" onclick={handleClick} text="Show more" />
+        <Button
+          type="button"
+          onClick={handleClick}
+          text="Show more"
+          view="simple"
+        />
       </div>
     </div>
   );
