@@ -35,5 +35,12 @@
   padding-left: 16px;
   text-transform: capitalize;
 }
+/* .dataPickerContainer {
+} */
 .datePicker {
+  width: 553px;
+}
+.textarea {
+  padding: 16px;
+  min-height: 116px;
 }

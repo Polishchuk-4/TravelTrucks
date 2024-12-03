@@ -88,13 +88,6 @@ export default function FiltersSideBar() {
     }
   };
 
-  // reset filters after reload
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(resetFilters());
-  //   };
-  // }, [dispatch]);
-
   return (
     <aside className={style.aside}>
       <LocationFilterInput
