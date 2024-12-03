@@ -31,24 +31,29 @@ export const fetchCampers = createAsyncThunk(
 
       return data;
     } catch (error) {
-      if (error.response) {
-        if (error.response.status === 404) {
-          return thunkAPI.rejectWithValue(
-            "No results found for the given filters."
-          );
-        }
+      if (error.status === 404) {
         return thunkAPI.rejectWithValue(
-          "Server error. Please try again later."
-        );
-      } else if (error.request) {
-        return thunkAPI.rejectWithValue(
-          "Network error. Please check your connection."
-        );
-      } else {
-        return thunkAPI.rejectWithValue(
-          "An unexpected error occurred: " + error.message
+          "Not found Campers with chosen filters"
         );
       }
+      return thunkAPI.rejectWithValue("Something went wrong, try later");
+    }
+  }
+);
+
+export const fetchCamperById = createAsyncThunk(
+  "campers/fetchCamper",
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await campersApi.get(`/campers/${id}`);
+      return data;
+    } catch (error) {
+      if (error.status === 404) {
+        return thunkAPI.rejectWithValue(
+          "Not found Campers with chosen filters"
+        );
+      }
+      return thunkAPI.rejectWithValue("Something went wrong, try later");
     }
   }
 );

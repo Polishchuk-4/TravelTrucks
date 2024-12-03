@@ -1,0 +1,39 @@
+.form {
+  width: 641px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 44px;
+  color: var(--main-text-color);
+  border-radius: 10px;
+  border: 1px solid var(--gray-light-color);
+}
+.form :last-child {
+  align-self: center;
+}
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.text {
+  margin-top: 8px;
+  color: #6c717b;
+}
+.inputs {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+  margin: 24px 0px;
+}
+.input {
+  width: 100%;
+  height: 60px;
+  border-radius: 12px;
+  background-color: var(--header-bg-color);
+  padding-left: 16px;
+  text-transform: capitalize;
+}
+.datePicker {
+}

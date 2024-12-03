@@ -21,7 +21,7 @@ import {
 
 import { fetchCampers } from "../../redux/campers/operation";
 import { setCurrentPage } from "../../redux/campers/slice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function FiltersSideBar() {
   const [prevFilters, setPrevFilters] = useState(filtersInitialState);
@@ -29,7 +29,7 @@ export default function FiltersSideBar() {
 
   const dispatch = useDispatch();
 
-  const filters = useSelector(selectAllFilters);
+  const { _persist, ...filters } = useSelector(selectAllFilters);
 
   const isFiltersActive =
     filters.location ||
@@ -62,6 +62,11 @@ export default function FiltersSideBar() {
   };
 
   const searchFilteredItem = () => {
+    console.log("--------");
+
+    console.log(JSON.stringify(filters));
+    console.log(JSON.stringify(prevFilters));
+
     if (JSON.stringify(filters) === JSON.stringify(prevFilters)) {
       toast("Please, choose else filter.", {
         icon: "ℹ️",
@@ -77,22 +82,23 @@ export default function FiltersSideBar() {
   };
 
   const handleResetFilters = () => {
-    if (isSearchMade) {
+    if (isFiltersActive && isSearchMade) {
       dispatch(resetFilters());
       dispatch(setCurrentPage(1));
       dispatch(fetchCampers({ page: 1 }));
       setPrevFilters(filtersInitialState);
       setIsSearchMade(false);
-    } else {
+    } else if (isFiltersActive) {
       dispatch(resetFilters());
     }
   };
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetFilters());
-    };
-  }, [dispatch]);
+  // reset filters after reload
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(resetFilters());
+  //   };
+  // }, [dispatch]);
 
   return (
     <aside className={style.aside}>

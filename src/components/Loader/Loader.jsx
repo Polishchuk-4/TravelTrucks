@@ -1,15 +1,15 @@
-import { RotatingLines } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 
 import style from "./Loader.module.css";
 
 export default function Loader() {
   return (
     <div className={style.row}>
-      <RotatingLines
+      <ThreeDots
         visible={true}
         height="96"
         width="96"
-        color="black"
+        color="#101828"
         strokeWidth="5"
         animationDuration="0.75"
         ariaLabel="rotating-lines-loading"

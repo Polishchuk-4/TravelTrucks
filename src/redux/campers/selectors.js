@@ -3,3 +3,4 @@ export const selectError = (state) => state.campers.error;
 export const selectIsLoading = (state) => state.campers.isLoading;
 export const selectCurrentPage = (state) => state.campers.currentPage;
 export const selectTotalItems = (state) => state.campers.totalItems;
+export const selectCamper = (state) => state.campers.camper;
