@@ -62,11 +62,6 @@ export default function FiltersSideBar() {
   };
 
   const searchFilteredItem = () => {
-    console.log("--------");
-
-    console.log(JSON.stringify(filters));
-    console.log(JSON.stringify(prevFilters));
-
     if (JSON.stringify(filters) === JSON.stringify(prevFilters)) {
       toast("Please, choose else filter.", {
         icon: "ℹ️",

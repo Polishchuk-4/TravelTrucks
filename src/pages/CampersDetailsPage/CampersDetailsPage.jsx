@@ -28,8 +28,6 @@ export default function CampersDetailsPage() {
   const error = useSelector(selectError);
   const camper = useSelector(selectCamper);
 
-  console.log(camper ?? "log");
-
   useEffect(() => {
     dispatch(fetchCamperById(id));
   }, [dispatch]);
