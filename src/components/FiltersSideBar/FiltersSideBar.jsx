@@ -25,7 +25,6 @@ import { useState } from "react";
 
 export default function FiltersSideBar() {
   const [prevFilters, setPrevFilters] = useState(filtersInitialState);
-  const [isSearchMade, setIsSearchMade] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -72,20 +71,14 @@ export default function FiltersSideBar() {
       dispatch(setCurrentPage(1));
       dispatch(fetchCampers({ page: 1, filters }));
       setPrevFilters(filters);
-      setIsSearchMade(true);
     }
   };
 
   const handleResetFilters = () => {
-    if (isFiltersActive && isSearchMade) {
-      dispatch(resetFilters());
-      dispatch(setCurrentPage(1));
-      dispatch(fetchCampers({ page: 1 }));
-      setPrevFilters(filtersInitialState);
-      setIsSearchMade(false);
-    } else if (isFiltersActive) {
-      dispatch(resetFilters());
-    }
+    dispatch(resetFilters());
+    dispatch(setCurrentPage(1));
+    dispatch(fetchCampers({ page: 1 }));
+    setPrevFilters(filtersInitialState);
   };
 
   return (

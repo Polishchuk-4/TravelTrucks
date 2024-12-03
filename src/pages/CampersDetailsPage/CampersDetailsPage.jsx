@@ -50,7 +50,9 @@ export default function CampersDetailsPage() {
             <div className={style.ratingWithLocationRow}>
               <p className={style.rating}>
                 <Icon icon="star" width="16px" height="16px" color="#FFC531" />
-                {camper.rating} ({camper.reviews.length} Reviews)
+                <p className={style.ratingText}>
+                  {camper.rating} ({camper.reviews.length} Reviews)
+                </p>
               </p>
               <p className={style.location}>
                 <Icon icon="location" width="20px" height="20px" />

@@ -89,3 +89,6 @@
   justify-content: space-between;
   align-items: start;
 }
+.ratingText {
+  border-bottom: 1px solid var(--main-text-color);
+}
