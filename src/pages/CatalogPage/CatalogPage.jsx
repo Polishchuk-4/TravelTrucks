@@ -34,7 +34,6 @@ export default function CatalogPage() {
   const trucks = useSelector(selectCampers);
 
   const filters = useSelector(selectAllFilters);
-  console.log(filters);
 
   useEffect(() => {
     dispatch(fetchCampers({ page: currentPage, filters }));
