@@ -6,7 +6,7 @@ import style from "./CatalogPage.module.css";
 import clsx from "clsx";
 
 import FiltersSideBar from "../../components/FiltersSideBar/FiltersSideBar";
-import TruckList from "../../components/TruckList/TruckList";
+import CamperList from "../../components/CamperList/CamperList";
 import Loader from "../../components/Loader/Loader";
 
 import {
@@ -34,6 +34,7 @@ export default function CatalogPage() {
   const trucks = useSelector(selectCampers);
 
   const filters = useSelector(selectAllFilters);
+  console.log(filters);
 
   useEffect(() => {
     dispatch(fetchCampers({ page: currentPage, filters }));
@@ -48,7 +49,7 @@ export default function CatalogPage() {
     <main className={clsxMain}>
       <FiltersSideBar />
       <div className={style.column}>
-        {trucks && <TruckList trucks={trucks} />}
+        {trucks && <CamperList campers={trucks} />}
         {error && <p>{error}</p>}
         {isLoading && <Loader />}
         {totalItems > trucks.length && !isLoading && !error && (
